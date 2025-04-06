@@ -7,19 +7,30 @@ int main(){
     char id[21]; //declra o id do pais e cidade pelo codigo telefonico ex (br-55-31)
     char sigla_estado[4];//declara o sigla do estado com minas gerias = MG
     char cidade[51]; // declara a cidade
+    float area; //declara a area da cidade 
     int populacao;//declara a qunatidade da população
+    float densidade_populacional;//declara a densicade popilacional
     float pib;//declara o pib da cidade
+    float pib_percapta; //declara o pib percapta
     int pontos_turisticos;//declara a quantidade de pontos turisticos
 
+    float resultado;
+    float resultadopib;
 
     char jogador2;
     char sigla_pais2[11]; 
     char id2[21]; 
     char sigla_estado2[4];
-    char cidade2[51]; 
+    char cidade2[51];
+    float area2; 
     int populacao2;
+    float densidade_populacional2;
     float pib2;
+    float pib_percapta2;
     int pontos_turisticos2;
+
+    float resultado2;
+    float resultadopib2;
 
     /*
 INSTRUÇÕES PARA PREENCHER:
@@ -65,6 +76,10 @@ Ao preencher a quantidade de pontos turísticos, deve ser informado um número i
     printf("escolha a sua cidade:  \n");//escolha a sua cidade se caso houver dois nomes ou mais devem ser separadas por _ anderline ex Belo_horizonte ou Porto_Alegre
         scanf("%s", cidade);
         getchar();
+
+    printf("declare a area da cidade por favor:  ");
+        scanf("%f", &area);
+        getchar();
     
     printf("declare a população da cidade:  \n"); //declare a população da cidade, e deve ser separa por . pontos não com  , virgula
         scanf("%d", &populacao);
@@ -77,6 +92,10 @@ Ao preencher a quantidade de pontos turísticos, deve ser informado um número i
     printf("declare a quantidade de pontos turisticos:  \n");//declare a quantidade de pontos turisticos da sua cidade 
         scanf("%d", &pontos_turisticos);
         getchar();
+
+    densidade_populacional = populacao / area;//descobre a descobre a densidade populacional
+
+    pib_percapta = pib / populacao;//descobre o pib percapta
 
     printf("\n Jogador 2 \n");
 
@@ -99,6 +118,10 @@ Ao preencher a quantidade de pontos turísticos, deve ser informado um número i
     printf("escolha a sua cidade:  \n");
         scanf("%s", cidade2);
         getchar();
+
+        printf("declare a area da cidade por favor:  ");
+        scanf("%f", &area2);
+        getchar();
     
     printf("declare a população da cidade:  \n");
         scanf("%d", &populacao2);
@@ -112,12 +135,17 @@ Ao preencher a quantidade de pontos turísticos, deve ser informado um número i
         scanf("%d", &pontos_turisticos2);
         getchar();
 
+    densidade_populacional2= populacao2 / area2;
+
+    pib_percapta2 = pib2 / populacao2;
+
     printf("\n Jogador-  %c \n", jogador);
     printf("\n`````Card Super Trunfo`````\n");//somente cria um titulo na hora da exibição
     printf("PAIS-  %s | ID-  %s \n", sigla_pais, id);//imprime a sigla do pais escolhido
     printf("ESTADO-  %s | CIDADE-  %s \n", sigla_estado, cidade);//imprime o estado e cidade separados por um pip "" | ""
-    printf("POPULAÇÃO-  %d \n", populacao); //imprime a população
-    printf("PRODUTO INTERNO BRUTO-   %f \n", pib); // imprime o PIB
+    printf("A AREA DA CIDADE É %.2fkm²\n", area);//imprime a area da cidade em kilometros quadrados
+    printf("POPULAÇÃO-  %d |DENSIDADE POPULACIONAL POR- |%.2f| km²  \n", populacao, densidade_populacional); //imprime a população e densidade populacional
+    printf("PRODUTO INTERNO BRUTO-   %.2f | PORDUTO INTERNO BRUTO POR PESSOA-  %.2f\n", pib, pib_percapta); // imprime o PIB e o PIB Percapta
     printf("PONTOS TURISTICOS-  %d \n", pontos_turisticos); // imprime a quantidade de pontos turisticos
     printf("################################\n"); // cria linha de jogo da velha so para ficar bonitinho
 
@@ -125,14 +153,16 @@ Ao preencher a quantidade de pontos turísticos, deve ser informado um número i
     printf("\n`````Card Super Trunfo`````\n");
     printf("PAIS-  %s |ID-  %s \n", sigla_pais2, id2);
     printf("ESTADO-  %s | CIDADE-  %s \n", sigla_estado2, cidade2);
-    printf("POPULAÇÃO-  %d \n", populacao2); 
-    printf("PRODUTO INTERNO BRUTO-  %f \n", pib2); 
+    printf("A AREA DA CIDADE É %.2fkm²\n", area2);
+    printf("POPULAÇÃO-  %d |DENSIDADE POPULACIONAL POR- |%.2f| km² \n", populacao2, densidade_populacional2); 
+    printf("PRODUTO INTERNO BRUTO-  %.2f | PORDUTO INTERNO BRUTO POR PESSOA-  %.2f \n", pib2, pib_percapta2); 
     printf("PONTOS TURISTICOS-  %d \n", pontos_turisticos2); 
     printf("################################\n"); 
     return 0;
 }
 
 /*
+
 Conforme a descrição da atividade, foi cumprida cada solicitação. Porém, tomei a liberdade de usar minha criatividade e fiz pequenas alterações, mas sempre seguindo as regras, como por exemplo:
 
 Quando se pede para criar um char em que vale somente um caractere, eu o usei para especificar o jogador, dando liberdade para que ele escolha entre caracteres alfanuméricos e especiais.
@@ -143,3 +173,4 @@ Em estado e país, coloquei para inserir somente a sigla, evitando riscos de dig
 
 Agradeço a atenção.
 */
+
