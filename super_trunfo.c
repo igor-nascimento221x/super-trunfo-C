@@ -16,6 +16,7 @@ int main(){
 
     float resultado;
     float resultadopib;
+    float soma_tudo;
 
     char jogador2;
     char sigla_pais2[11]; 
@@ -31,20 +32,21 @@ int main(){
 
     float resultado2;
     float resultadopib2;
+    float soma_tudo2;
 
     /*
 INSTRUÇÕES PARA PREENCHER:
  De forma alguma deve ser usada a tecla SPACE do seu teclado, pois isso pode causar erros no código e interrupções.
 
-A primeira coisa que você deve fazer ao iniciar o programa é escolher UM único caractere para te identificar, podendo ser uma letra, um número ou até mesmo um caractere especial. Mas, lembre-se: deve ser apenas UM caractere. Exemplo: ✅ CERTO – $ ❌ ERRADO – R$
+A primeira coisa que você deve fazer ao iniciar o programa é escolher UM único caractere para te identificar, podendo ser uma letra, um número ou até mesmo um caractere especial. Mas, lembre-se: deve ser apenas UM caractere. Exemplo: 👍🏻 CERTO – $ 👎🏻 ERRADO – R$
 
 Ao escolher o país, deve-se inserir somente as siglas em letra maiúscula, e em seguida enviar com a tecla ENTER.
 
-Em seguida, você irá gerar o código da carta, chamado de ID. As siglas do país também devem ser usadas em caixa alta, e os caracteres devem ser separados por hífen "-". Mais uma vez: NÃO USE A TECLA SPACE. Exemplo: ✅ CERTO – BR-55-31 ❌ ERRADO – Br-55 31
+Em seguida, você irá gerar o código da carta, chamado de ID. As siglas do país também devem ser usadas em caixa alta, e os caracteres devem ser separados por hífen "-". Mais uma vez: NÃO USE A TECLA SPACE. Exemplo: 👍🏻 CERTO – BR-55-31 👎🏻 ERRADO – Br-55 31
 
 Após escolher o país e gerar o ID, você irá escolher o estado da sua carta Super Trunfo, que também deve conter somente as siglas em caixa alta do estado escolhido.
 
-Chegou a hora de escolher a cidade. Escolha bem para que seja o vencedor! Caso sua cidade tenha nome composto, como Belo Horizonte, deve-se separá-los por underline "_", ficando assim: ✅ Belo_Horizonte ✅ São_Paulo
+Chegou a hora de escolher a cidade. Escolha bem para que seja o vencedor! Caso sua cidade tenha nome composto, como Belo Horizonte, deve-se separá-los por underline "_", ficando assim: 👍🏻 Belo_Horizonte 👍🏻 São_Paulo
 
 Mais uma vez, para reforçar: EM MOMENTO ALGUM SE DEVE USAR A TECLA SPACE para separar as palavras.
 
@@ -77,7 +79,7 @@ Ao preencher a quantidade de pontos turísticos, deve ser informado um número i
         scanf("%s", cidade);
         getchar();
 
-    printf("declare a area da cidade por favor:  ");
+    printf("declare a area da cidade por favor: \n ");
         scanf("%f", &area);
         getchar();
     
@@ -85,7 +87,7 @@ Ao preencher a quantidade de pontos turísticos, deve ser informado um número i
         scanf("%d", &populacao);
         getchar();
     
-    printf("declare o PIB(Produto Interno Bruto) da população:  \n");//declare oPIB  da cidade, e deve ser separa por . pontos não com com , virgula
+    printf("declare o PIB(Produto Interno Bruto) da cidade:  \n");//declare oPIB  da cidade, e deve ser separa por . pontos não com com , virgula
         scanf("%f", &pib);
         getchar();
     
@@ -96,6 +98,8 @@ Ao preencher a quantidade de pontos turísticos, deve ser informado um número i
     densidade_populacional = populacao / area;//descobre a descobre a densidade populacional
 
     pib_percapta = pib / populacao;//descobre o pib percapta
+
+    soma_tudo = area + populacao + pib + pib_percapta + (int) pontos_turisticos;//soma todos os atributos criando a carta super trunfo
 
     printf("\n Jogador 2 \n");
 
@@ -119,7 +123,7 @@ Ao preencher a quantidade de pontos turísticos, deve ser informado um número i
         scanf("%s", cidade2);
         getchar();
 
-        printf("declare a area da cidade por favor:  ");
+        printf("declare a area da cidade por favor:  \n");
         scanf("%f", &area2);
         getchar();
     
@@ -127,7 +131,7 @@ Ao preencher a quantidade de pontos turísticos, deve ser informado um número i
         scanf("%d", &populacao2);
         getchar();
     
-    printf("declare o PIB(Produto Interno Bruto) da população:  \n");
+    printf("declare o PIB(Produto Interno Bruto) da cidade:  \n");
         scanf("%f", &pib2);
         getchar();
     
@@ -139,25 +143,54 @@ Ao preencher a quantidade de pontos turísticos, deve ser informado um número i
 
     pib_percapta2 = pib2 / populacao2;
 
+    soma_tudo2 = area2 + (int)populacao2 + pib2 + pib_percapta2 + (int) pontos_turisticos2 ;
+
+    /* divisa  para as variaveis de comparação*/
+    float comparacao_area = area > area2;//compara area 
+    int comparacao_populacao = populacao > populacao2;//compara população
+    float comparacao_densidade = densidade_populacional <= densidade_populacional2; //compara densidade populacional, porem quem tem a menor vence
+    float comparação_pib = pib > pib2;// compara qual cidade produz mais
+    float comparacao_percapta = pib_percapta > pib_percapta2; //campara qual cidade a população é mais rica 
+    int comparação_turismo = pontos_turisticos > pontos_turisticos2;//compara qual cidade é mais turistica 
+    float comparacao_trunfo = soma_tudo > soma_tudo2;
+
+    ///////////////////////////////////////////////////////////
+
     printf("\n Jogador-  %c \n", jogador);
     printf("\n`````Card Super Trunfo`````\n");//somente cria um titulo na hora da exibição
     printf("PAIS-  %s | ID-  %s \n", sigla_pais, id);//imprime a sigla do pais escolhido
     printf("ESTADO-  %s | CIDADE-  %s \n", sigla_estado, cidade);//imprime o estado e cidade separados por um pip "" | ""
+    printf("\n"); //apenas para dar uma quebra de linha
     printf("A AREA DA CIDADE É %.2fkm²\n", area);//imprime a area da cidade em kilometros quadrados
     printf("POPULAÇÃO-  %d |DENSIDADE POPULACIONAL POR- |%.2f| km²  \n", populacao, densidade_populacional); //imprime a população e densidade populacional
     printf("PRODUTO INTERNO BRUTO-   %.2f | PORDUTO INTERNO BRUTO POR PESSOA-  %.2f\n", pib, pib_percapta); // imprime o PIB e o PIB Percapta
     printf("PONTOS TURISTICOS-  %d \n", pontos_turisticos); // imprime a quantidade de pontos turisticos
+    printf("CARTA SUPER TRUNFO  A SOMATORIA DE TODOS OS VALORES RESULTA EM  %.2f\n", soma_tudo);//inprime o a carta super trunfo
     printf("################################\n"); // cria linha de jogo da velha so para ficar bonitinho
 
     printf("\n Jogador- %c \n", jogador2);
     printf("\n`````Card Super Trunfo`````\n");
     printf("PAIS-  %s |ID-  %s \n", sigla_pais2, id2);
     printf("ESTADO-  %s | CIDADE-  %s \n", sigla_estado2, cidade2);
+    printf("\n");
     printf("A AREA DA CIDADE É %.2fkm²\n", area2);
     printf("POPULAÇÃO-  %d |DENSIDADE POPULACIONAL POR- |%.2f| km² \n", populacao2, densidade_populacional2); 
     printf("PRODUTO INTERNO BRUTO-  %.2f | PORDUTO INTERNO BRUTO POR PESSOA-  %.2f \n", pib2, pib_percapta2); 
-    printf("PONTOS TURISTICOS-  %d \n", pontos_turisticos2); 
+    printf("PONTOS TURISTICOS-  %d \n", pontos_turisticos2);
+    printf("CARTA SUPER TRUNFO  A SOMATORIA DE TODOS OS VALORES RESULTA EM  %.2f\n", soma_tudo2);
     printf("################################\n"); 
+    printf("\n");
+
+    printf("\nAVALIAÇÃO DAS CARTAS\n""\n   Lenbrando a comparação é feita em ordem de jogada,\n ou seja do primeiro jogador e avaliado ao segundo jogador, sendo que se\n o resultado for 1 e ponto para o jogador1, se o resultado for 0 ponto para o jogador2\n");//titulo e explicação do resultado
+    prinf("\n");
+    printf("A CIDADE QUE POSSUI MAIR=S AREA É |%.0f|\n", comparacao_area);//imprime a comparação da area da cidade
+    printf("QUEM TEM MAIS POPULAÇÃO É |%i|\n", comparacao_populacao);//imprime a comparação de qual populacão eé maior 
+    printf("A CIDADE COM CASAS MAIORES É |%.0f|\n", comparacao_densidade);//imprime a comparação da densidade populacional, a menor vence
+    printf("A CIDADE MAIS RICA É |%.0f|\n", comparação_pib);//comprar qual pib é maior
+    printf("ONDE AS QUEM TEM MAIS PESSOAS RICAS |%.0f|\n",comparacao_percapta);//compara qual população é mais rica
+    printf("A CIDADE MAIS TURISTICA É |%i|\n", comparação_turismo);//compara qual cidade possui mais pontos turisticos
+    printf("A CARTA COM O SUPER TRUNFO MAIOR É |%.0f|\n", comparacao_trunfo);//compara qual carta trunfo é maior
+
     return 0;
 }
 
